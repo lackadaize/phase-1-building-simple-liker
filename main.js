@@ -2,12 +2,12 @@
 const EMPTY_HEART = '♡';
 const FULL_HEART = '♥';
 const modal = document.getElementById("modal");
-//const heart = document.querySelector(span.like-glyph);
+const heart = document.querySelectorAll("span.like-glyph");
 
 // EventListeners
 document.addEventListener("DOMContentLoaded", function () {
-  console.log("The DOM has loaded");
-  document.body.addEventListener("click", heartClick);
+  //console.log("The DOM has loaded");
+  heart.forEach(heart => heart.addEventListener("click", heartClick));
 });
 
 // Function(s)
@@ -30,10 +30,12 @@ function heartChange (event) {
 };
 
 function heartError (error) {
-  modal.className = "unhidden";
-  console.log("Heart Error");
+  modal.className = "";
+  modal.innerText = "Random server error. Try again.";
+  setTimeout(function () {
+    modal.className = "hidden"
+  }, 3000);
 };
-
 
 //------------------------------------------------------------------------------
 // Don't change the code below: this function mocks the server response
